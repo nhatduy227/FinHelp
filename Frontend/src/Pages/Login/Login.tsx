@@ -4,14 +4,14 @@ import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 function Login() {
   const signInWithGoogle = () => {
-    const dummy = {Dummy: "Dummy 2"};
+    const PortfolioInfo = {Deposit: 0};
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then(async (re) => {
         const user = re.user;
         console.log(re);
-        // Create User Document for saving Portfolio Info
-        await createUserDocument(user, dummy);
+        // TODO: Create User Document for saving Portfolio Info
+        await createUserDocument(user, PortfolioInfo);
       })
       .catch((err) => {
         console.log(err);

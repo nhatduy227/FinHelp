@@ -23,10 +23,8 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore();
 
-export const createUserDocument = async (user: any, additionalData: any) => {
+export const createUserDocument = async (user: any, PortfolioInfo: any) => {
   if (!user) return;
 
-  const newUser = doc(collection(db, "users", user.uid));
-  console.log(newUser);
-  await setDoc(newUser, additionalData);
+  // TODO: create a snapshot on firestore with the uid from authentication
 };
