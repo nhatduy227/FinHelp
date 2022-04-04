@@ -1,32 +1,44 @@
-import React, { useState } from 'react';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Toolbar from '@mui/material/Toolbar';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { NavBarData } from './NavBarData';
-import './NavBar.css';
-import { IconContext } from 'react-icons';
 
-function Navbar() {
+import { NavBarData } from './NavBarData';
+
+const drawerWidth = 240;
+
+const NavBar = () => {
   return (
-    <>
-      <IconContext.Provider value={{ color: '#fff' }}>
-        <nav className='nav-menu active'>
-          <ul className='nav-menu-items'>
-            {NavBarData.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-      </IconContext.Provider>
-    </>
+    <Box sx={{ display: 'flex' }}>
+      <Drawer
+        variant="permanent"
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+        }}
+      >
+        <Toolbar />
+        <Box sx={{ overflow: 'auto' }}>
+          <List>
+            {NavBarData.map((item, index) => (
+              <ListItem button key={index} component={Link} to={ item.path }>
+                <ListItemIcon>
+                  { item.icon }
+                </ListItemIcon>
+                <ListItemText primary={item.title} />
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Drawer>
+    </Box>
   );
 }
 
-export default Navbar;
+export default NavBar;
