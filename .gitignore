@@ -22,3 +22,7 @@ Frontend/.env.production.local
 Frontend/npm-debug.log*
 Frontend/yarn-debug.log*
 Frontend/arn-error.log*
+
+Backend/venv/
+Backend/.env
+Backend/.idea/
