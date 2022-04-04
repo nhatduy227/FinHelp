@@ -1,17 +1,30 @@
 import React from "react";
-import { auth, createUserDocument } from "../../firebase-config";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { auth, db } from "../../firebase-config";
+import { doc, setDoc } from "firebase/firestore";
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  getAdditionalUserInfo,
+} from "firebase/auth";
 
 function Login() {
   const signInWithGoogle = () => {
-    const PortfolioInfo = {Deposit: 0};
+    const addUser = async (userId: any, userData: any) => {
+      const userRef = doc(db, "users", userId);
+      return await setDoc(userRef, userData);
+    };
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
-      .then(async (re) => {
-        const user = re.user;
-        console.log(re);
-        // TODO: Create User Document for saving Portfolio Info
-        await createUserDocument(user, PortfolioInfo);
+      .then(async (result) => {
+        const user = result.user;
+
+        const isNewUser = getAdditionalUserInfo(result);
+        if (isNewUser) {
+          const userData = { investingStrategy: "", deposit: 0 };
+          await addUser(user.uid, userData);
+        } else {
+          console.log("User already exists");
+        }
       })
       .catch((err) => {
         console.log(err);

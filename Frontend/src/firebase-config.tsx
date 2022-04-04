@@ -1,12 +1,6 @@
 import firebase, { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import {
-  collection,
-  doc,
-  DocumentData,
-  getFirestore,
-  setDoc,
-} from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBFZA4vyiY7AHLDq2Rj_08C2UQRFJVfG10",
@@ -22,9 +16,3 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const db = getFirestore();
-
-export const createUserDocument = async (user: any, PortfolioInfo: any) => {
-  if (!user) return;
-
-  // TODO: create a snapshot on firestore with the uid from authentication
-};
