@@ -49,7 +49,7 @@ const useStyles = makeStyles(them => ({
     },
   },
   navText: {
-    fontWeight: "bold"
+    fontWeight: "500"
   }
 }))
 
