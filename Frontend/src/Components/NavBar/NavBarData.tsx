@@ -1,25 +1,25 @@
 import React from 'react';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
-import * as IoIcons from 'react-icons/io';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import AnalyticsOutlinedIcon from '@mui/icons-material/AnalyticsOutlined';
+import ShowChartOutlinedIcon from '@mui/icons-material/ShowChartOutlined';
 
 export const NavBarData = [
   {
     title: 'Dashboard',
     path: '/',
-    icon: <AiIcons.AiFillHome />,
+    icon: <HomeOutlinedIcon />,
     cName: 'nav-text'
   },
   {
     title: 'Analytics',
     path: '/Analytics',
-    icon: <IoIcons.IoIosPaper />,
+    icon: <AnalyticsOutlinedIcon />,
     cName: 'nav-text'
   },
   {
-    title: 'LiveMarket',
+    title: 'Live Market',
     path: '/LiveMarket',
-    icon: <FaIcons.FaCartPlus />,
+    icon: <ShowChartOutlinedIcon />,
     cName: 'nav-text'
   }
 ];

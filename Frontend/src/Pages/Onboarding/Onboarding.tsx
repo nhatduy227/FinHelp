@@ -9,7 +9,6 @@ function Onboarding() {
   };
   return (
     <div>
-      <Navbar />
       <div className="container">
         <p>Onboarding</p>
         <button onClick={signOut}>Sign Out</button>
