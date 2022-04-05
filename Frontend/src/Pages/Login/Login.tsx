@@ -19,9 +19,7 @@ function Login() {
             userName: user.displayName,
             profilePic: user.photoURL,
             investingStrategy: "",
-            deposit: 0,
-            completeOnboarding: false,
-          };
+            deposit: 0,          };
           await updateFirestoreUser(user.uid, userData);
         } else {
           console.log("User already exists");
