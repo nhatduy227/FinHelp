@@ -1,18 +1,16 @@
 import React from "react";
-import './Onboarding.css'
-import { auth } from "../../firebase-config";
-import Navbar from "../../Components/NavBar/NavBar";
+import "./Onboarding.css";
 
 function Onboarding() {
-  const signOut = () => {
-    auth.signOut();
-  };
+  const completeOnboarding = () =>{ 
+    localStorage.setItem('firstTimeUser', "1");
+    window.location.reload();
+  }
   return (
     <div>
-      <Navbar />
       <div className="container">
         <p>Onboarding</p>
-        <button onClick={signOut}>Sign Out</button>
+        <button onClick={completeOnboarding}>Complete Onboarding</button>
       </div>
     </div>
   );
