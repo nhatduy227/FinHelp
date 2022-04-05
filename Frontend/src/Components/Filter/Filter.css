@@ -1,0 +1,37 @@
+
+.area{
+    margin:12px 12px 4px 12px;
+    font-family: 'Roboto', sans-serif;
+}
+.title{
+    display: flex;
+    justify-content: start;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    color: #072D4B;
+    margin-bottom: 4px;
+}
+.options{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #072D4B;
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+.options div{
+    width: 80px;
+height: 30px;
+background: #FFFFFF;
+border: 0.2px solid #FFFFFF;
+box-sizing: border-box;
+box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.04);
+border-radius: 20px;
+
+}

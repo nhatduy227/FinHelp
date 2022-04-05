@@ -39,7 +39,7 @@ function App() {
     </div>
   )
 
-  if (isUserSignedIn === true) {
+  // if (isUserSignedIn === true) {
     return (
       <Router>
         <div>
@@ -50,16 +50,16 @@ function App() {
         </div>
       </Router>
     )
-  }
-  else {
-    return (
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login />} />
-        </Routes>
-      </Router>
-    )
-  }
+  // }
+  // else {
+  //   return (
+  //     <Router>
+  //       <Routes>
+  //         <Route path="/" element={<Login />} />
+  //       </Routes>
+  //     </Router>
+  //   )
+  // }
 }
 
 export default App;
