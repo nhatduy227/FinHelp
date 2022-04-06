@@ -1,9 +1,7 @@
 import datetime
 
-from src import utils
 import finnhub
 from config.config import Config
-import requests
 
 
 class FinnHub:

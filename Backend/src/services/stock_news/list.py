@@ -1,7 +1,3 @@
-from config.config import Config
-import requests
-
-
 def list_news_by_company(finhub, parameters):
     if "symbol" not in parameters:
         return {
