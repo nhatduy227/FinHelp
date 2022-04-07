@@ -111,8 +111,7 @@ const Header = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My Portfolio</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
     </Menu>
   );

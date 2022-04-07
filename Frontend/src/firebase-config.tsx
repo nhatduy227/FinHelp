@@ -1,6 +1,11 @@
 import firebase, { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBFZA4vyiY7AHLDq2Rj_08C2UQRFJVfG10",
@@ -16,3 +21,28 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const db = getFirestore();
+
+// firebase util functions
+export const updateFirestoreUser = async (userId: any, userData: any) => {
+  const userRef = doc(db, "users", userId);
+  return await setDoc(userRef, userData);
+};
+
+export const getFirestoreUser = async (userId: any) => {
+  const userRef = doc(db, "users", userId);
+  
+  try {
+    const docSnap = await getDoc(userRef);
+
+    if (docSnap.exists()) {
+      const userData = docSnap.data();
+      console.log(userData)
+
+      return userData
+    }
+  } catch(e) {
+    console.log(e);
+  }
+};
+
+

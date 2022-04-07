@@ -8,6 +8,9 @@ function Dashboard() {
   const signOut = () => {
     auth.signOut();
   };
+  const clearLocalStorage = () => {
+    localStorage.clear()
+  }
   return (
     <div className="container">
       {/* <p>Dashboard</p>

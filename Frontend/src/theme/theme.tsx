@@ -18,8 +18,9 @@ export default createTheme({
   },
   typography: {
       fontFamily: 'Roboto',
+      fontWeightBold: 500,
       button: {
-          textTransform: 'none',
+          textTransform: 'none'
       }
   }
 });

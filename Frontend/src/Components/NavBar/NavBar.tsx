@@ -15,7 +15,7 @@ import { NavBarData } from './NavBarData';
 
 const drawerWidth = 260;
 
-const useStyles = makeStyles(them => ({
+const useStyles = makeStyles({
   root: {
     color: '#36313d',
     fontSize: 14,
@@ -49,9 +49,9 @@ const useStyles = makeStyles(them => ({
     },
   },
   navText: {
-    fontWeight: "bold"
+    fontWeight: "500"
   }
-}))
+})
 
 const NavBar = ({
   children,
