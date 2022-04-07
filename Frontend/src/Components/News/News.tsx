@@ -29,6 +29,8 @@ const News=()=>{
     const filterHandler = (selectedComp: string) => {
         setfiltComp(selectedComp);
     }
+    //pass filterHandler to Filter component, 
+    //pass filtArticles to Articles component
 
     useEffect(() => {
         filtArticles = NewsData.filter((item) => {
@@ -43,7 +45,7 @@ const News=()=>{
 
     return(
         <div>
-            <Filter />
+            <Filter /> 
             <Articles/>
         </div>
     )
