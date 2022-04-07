@@ -49,6 +49,7 @@ function App() {
     </div>
   )
 
+
   if (isUserSignedIn === true) {
     if (firstTimeUser === true) {
       return (<Router>

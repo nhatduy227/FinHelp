@@ -1,0 +1,38 @@
+
+
+.title div{
+    display: flex;
+    justify-content: start;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    color: #072D4B;
+    margin-bottom: 4px;
+}
+.filter-item-area{
+    margin-top: 12px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 28px;
+    color: #072D4B;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filter-item:hover{
+    cursor: pointer;
+}
+.filter-item{
+    width: 80px;
+    height: 30px;
+    background: #FFFFFF;
+    border: 0.2px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.04);
+    border-radius: 20px;
+    line-height: 28px;
+}
