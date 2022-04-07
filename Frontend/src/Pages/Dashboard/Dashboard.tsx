@@ -10,9 +10,9 @@ function Dashboard() {
   };
   return (
     <div className="container">
-      <p>Dashboard</p>
+      {/* <p>Dashboard</p>
 
-      <button onClick={signOut}>Sign Out</button>
+      <button onClick={signOut}>Sign Out</button> */}
       <News/>
       <Investors/>
     </div>

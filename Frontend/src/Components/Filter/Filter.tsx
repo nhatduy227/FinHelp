@@ -1,7 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import "./Filter.css"
 
-function Filter(){
+const Filter=()=>{
+    function onClick(){
+        alert('a')
+    }
     return(
         <div className="area">
             <div className="title">
@@ -11,7 +14,7 @@ function Filter(){
             </div>
 
             <div className="options">
-                <div>Amazon</div>
+                <div onClick={onClick}>Amazon</div>
                 <div>Netflix</div>
                 <div>Google</div>
                 <div>Tesla</div>

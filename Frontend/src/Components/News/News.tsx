@@ -5,13 +5,6 @@ import Filter from "../Filter/Filter";
 import Articles from "../Articles/Articles";
 
 const News=()=>{
-
-    const [filtComp,setfiltComp]=useState('Apple')
-    let filterArticles: { title: string; body: string; comp: string; }[] = []
-
-    const filterHandler = (selectedComp: string) => {
-        setfiltComp(selectedComp);
-    }
     const NewsData=[
         {
             title:'title 1',
@@ -30,21 +23,28 @@ const News=()=>{
         }
     ]
 
+    const [filtComp,setfiltComp]=useState('Apple')
+    let filtArticles: { title: string; body: string; comp: string; }[] = []
+
+    const filterHandler = (selectedComp: string) => {
+        setfiltComp(selectedComp);
+    }
+
     useEffect(() => {
-        console.log(NewsData)
-        filterArticles = NewsData.filter((item) => {
+        filtArticles = NewsData.filter((item) => {
             return item.comp == 'Apple'
         })
+        console.log(filtArticles)
     }, [])
-
-   useEffect(() => {
-       console.log(filterArticles)
-   }, [filterArticles])
     
+//    useEffect(() => {
+//        console.log(filtArticles[0].title)
+//    }, [filtArticles])
+
     return(
         <div>
-            <Filter/>
-            <Articles />
+            <Filter />
+            <Articles/>
         </div>
     )
 }

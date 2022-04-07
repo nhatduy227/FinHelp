@@ -1,18 +1,19 @@
 .area{
     margin-top: 32px;
 }
-.title{
+.title div{
     display: flex;
     justify-content: start;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 12px;
     line-height: 18px;
     color: #072D4B;
-    margin-bottom: 8px;
+    margin-top: 24px;
 }
 .card_area{
+    margin-top: 24px;
     display: flex;
     justify-content: space-between;
 }

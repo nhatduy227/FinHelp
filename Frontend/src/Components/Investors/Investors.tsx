@@ -7,7 +7,7 @@ export const Investors=()=>{
 
             <div className="title">
                 <div>
-                INVESTORS YOU SHOULD FOLLOW
+                Investors you should follow
                 </div>
             </div>
 
