@@ -2,6 +2,7 @@ import React from 'react';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import AnalyticsOutlinedIcon from '@mui/icons-material/AnalyticsOutlined';
 import ShowChartOutlinedIcon from '@mui/icons-material/ShowChartOutlined';
+import BusinessCenterOutlinedIcon from '@mui/icons-material/BusinessCenterOutlined';
 
 export const NavBarData = [
   {
@@ -20,6 +21,12 @@ export const NavBarData = [
     title: 'Live Market',
     path: '/LiveMarket',
     icon: <ShowChartOutlinedIcon />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Portfolio',
+    path: '/Portfolio',
+    icon: <BusinessCenterOutlinedIcon />,
     cName: 'nav-text'
   }
 ];
