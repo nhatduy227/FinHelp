@@ -1,0 +1,39 @@
+.background {
+  /* The image used */
+  background-image: url(../../../public/login.png);
+  /* Full height */
+  height: 100vh;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* Center Child Component */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  background: #BBAACC;
+  position: absolute;
+  top: 4em;
+  left: 15em;
+  opacity: 50%;
+  border-radius: 50%;
+  width: 80vh;
+  height: 80vh;
+}
+
+h1 {
+    font-weight: bolder;
+    color: white;
+    font-size: 3em;
+}
+
+h2 {
+    font-weight: lighter;
+    color: white;
+    font-size: 2em;
+}
