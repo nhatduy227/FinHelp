@@ -1,5 +1,6 @@
 import React from "react";
 import "./Investors.css"
+import Card from '../UI/Card'
 
 export const Investors=()=>{
     let investors: { name: string; comp: string; contact: string; }[] = []
@@ -15,24 +16,39 @@ export const Investors=()=>{
     }
     
     return(
-        <div className="area">
 
+        <div >
             <div className="title">
                 <div>
                 Investors you should follow
                 </div>
             </div>
 
-            <div className="card_area">
-                
-                <div className="card">
+            <div className="investor-area">
 
-                </div>
-                <div className="card"></div>
-                <div className="card"></div>
-                <div className="card"></div>
-                <div className="card"></div>
+                
+                <Card className="investor-item">
+                    <div>investor </div>
+                </Card>
+
+                <Card className="investor-item">
+                    <div>Investor</div>
+                </Card>
+
+                <Card className="investor-item">
+                    <div>Investor</div>
+                </Card>
+
+                <Card className="investor-item">
+                    <div>Investor</div>
+                </Card>
+
+                <Card className="investor-item">
+                    <div>Investor</div>
+                </Card>
+
             </div>
+
         </div>
     )
 }

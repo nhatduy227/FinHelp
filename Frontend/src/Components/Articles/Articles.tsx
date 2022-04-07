@@ -8,12 +8,12 @@ import "./Articles.css"
 //     comp:string
 // }
 
-// const Articles=({title,body,comp}:filtArticle)=>{
+// const Articles=({title}:filtArticle)=>{
 
 const Articles=()=>{
     
     return(
-        <div className="area" >
+        <div >
             <div className="row1">
                 
                 <div className="row_area">

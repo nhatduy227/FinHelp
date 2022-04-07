@@ -6,19 +6,22 @@ const Filter=()=>{
         alert('a')
     }
     return(
-        <div className="area">
+        <div>
+
             <div className="title">
                 <div>
                     Top picks for you
                 </div>
             </div>
 
-            <div className="options">
-                <div onClick={onClick}>Amazon</div>
-                <div>Netflix</div>
-                <div>Google</div>
-                <div>Tesla</div>
-                <div>Meta</div>
+            <div className="filter-item-area">
+
+                <div onClick={onClick} className='filter-item'>Amazon</div>
+                <div className='filter-item'>Netflix</div>
+                <div className='filter-item'>Google</div>
+                <div className='filter-item'>Tesla</div>
+                <div className='filter-item'>Meta</div>
+
             </div>
         </div>
     )

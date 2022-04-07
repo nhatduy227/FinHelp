@@ -1,8 +1,5 @@
 
-.area{
-    margin:12px 12px 4px 12px;
-    font-family: 'Roboto', sans-serif;
-}
+
 .title div{
     display: flex;
     justify-content: start;
@@ -13,12 +10,8 @@
     line-height: 23px;
     color: #072D4B;
     margin-bottom: 4px;
-    
 }
-.options div:hover{
-    cursor: pointer;
-}
-.options{
+.filter-item-area{
     margin-top: 12px;
     font-family: 'Roboto';
     font-style: normal;
@@ -29,7 +22,11 @@
     display: flex;
     justify-content: space-between;
 }
-.options div{
+
+.filter-item:hover{
+    cursor: pointer;
+}
+.filter-item{
     width: 80px;
     height: 30px;
     background: #FFFFFF;

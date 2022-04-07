@@ -23,34 +23,35 @@ const News=()=>{
         }
     ]
 
-    const [filtComp,setfiltComp]=useState('Apple')
-    let filtArticles: { title: string; body: string; comp: string; }[] = []
+    const [filtComp,setfiltComp]=useState('')
 
     const filterHandler = (selectedComp: string) => {
         setfiltComp(selectedComp);
     }
-    //pass filterHandler to Filter component, 
-    //pass filtArticles to Articles component
+    
+    let filtArticles: { title: string; body: string; comp: string; }[] = []
 
     useEffect(() => {
         filtArticles = NewsData.filter((item) => {
+
             return item.comp == 'Apple'
+            // return item.comp == filtComp
+
         })
-        console.log(filtArticles)
+        console.log(filtArticles[0].title)
     }, [])
     
-//    useEffect(() => {
-//        console.log(filtArticles[0].title)
-//    }, [filtArticles])
+
 
     return(
-        <div>
-            <Filter /> 
-            <Articles/> 
-
-            {/* <Articles title={filtArticles[0].title}/>  */} 
-            {/* pass props như trên cứ bị lỗi, nếu em pass là  <Articles title='title1'/> thì lại ok  */}
+        <div >
+        {/* pass filterHandler to Filter component, 
+            pass filtArticles to Articles component */}
             
+            <Filter /> 
+            <Articles /> 
+
+        
         </div>
     )
 }

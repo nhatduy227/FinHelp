@@ -1,9 +1,5 @@
-.area{
-    margin-top: 32px;
-}
+
 .title div{
-    display: flex;
-    justify-content: start;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
@@ -12,12 +8,12 @@
     color: #072D4B;
     margin-top: 24px;
 }
-.card_area{
+.investor-area{
     margin-top: 24px;
     display: flex;
     justify-content: space-between;
 }
-.card{
+.investor-item{
     width: 142px;
     height: 185px;
     background: #FFFFFF;
