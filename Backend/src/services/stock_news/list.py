@@ -6,9 +6,9 @@ def list_news_by_company(finhub, parameters):
         }
     params = {"symbol": parameters["symbol"], "page": 1, "limit": 10}
     if "page" in parameters:
-        params["page"] = parameters["page"]
+        params["page"] = int(parameters["page"])
     if "limit" in parameters:
-        params["limit"] = parameters["limit"]
+        params["limit"] = int(parameters["limit"])
 
     return {
         "message": "successfully query",

@@ -1,1 +1,2 @@
 from .stock_news import stock_news_service
+from .stock_market_live import stock_price_service
