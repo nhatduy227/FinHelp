@@ -12,6 +12,7 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import LiveMarket from './Pages/LiveMarket/LiveMarket';
 import Login from './Pages/Login/Login';
 import Onboarding from "./Pages/Onboarding/Onboarding";
+import Portfolio from './Pages/Portfolio/Portfolio';
 
 function App() {
   const [isUserSignedIn, setIsUserSignedIn] = useState(false);
@@ -41,6 +42,9 @@ function App() {
       </Routes>
       <Routes>
         <Route path="/LiveMarket" element={<LiveMarket />} />
+      </Routes>
+      <Routes>
+        <Route path="/Portfolio" element={<Portfolio />} />
       </Routes>
     </div>
   )

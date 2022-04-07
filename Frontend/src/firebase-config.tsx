@@ -30,7 +30,19 @@ export const updateFirestoreUser = async (userId: any, userData: any) => {
 
 export const getFirestoreUser = async (userId: any) => {
   const userRef = doc(db, "users", userId);
-  return await getDoc(userRef);
+  
+  try {
+    const docSnap = await getDoc(userRef);
+
+    if (docSnap.exists()) {
+      const userData = docSnap.data();
+      console.log(userData)
+
+      return userData
+    }
+  } catch(e) {
+    console.log(e);
+  }
 };
 
 
