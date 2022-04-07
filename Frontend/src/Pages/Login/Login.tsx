@@ -13,7 +13,6 @@ import "../../index.css";
 const useStyles = makeStyles({
   button: {
     alignSelf: "center",
-    fontSize: "13em",
   },
 });
 
@@ -46,19 +45,18 @@ function Login() {
     <div className="background">
       <div className="circle" />
       <div>
-      <h1>All-in-one hub for beginner investors</h1>
-      <h2>Investing made easy</h2>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        style={{ color: "white" }}
-        onClick={signInWithGoogle}
-      >
-        Get Started
-      </Button>
+        <h1>All-in-one hub for beginner investors</h1>
+        <h2>Investing made easy</h2>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          style={{ color: "white" }}
+          onClick={signInWithGoogle}
+        >
+          <div className="button">Get Started</div>
+        </Button>
       </div>
-      
     </div>
   );
 }
