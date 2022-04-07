@@ -46,7 +46,11 @@ const News=()=>{
     return(
         <div>
             <Filter /> 
-            <Articles/>
+            <Articles/> 
+
+            {/* <Articles title={filtArticles[0].title}/>  */} 
+            {/* pass props như trên cứ bị lỗi, nếu em pass là  <Articles title='title1'/> thì lại ok  */}
+            
         </div>
     )
 }
