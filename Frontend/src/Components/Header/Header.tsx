@@ -17,7 +17,6 @@ import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
-import { auth } from "../../firebase-config";
 import * as React from 'react';
 import { useNavigate } from "react-router-dom";
 
