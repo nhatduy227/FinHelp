@@ -8,7 +8,7 @@ import { User } from '../../Models/User';
 import { DocumentData } from 'firebase/firestore';
 import Filter from "../../Components/Filter/Filter";
 import { Typography } from "@mui/material";
-import { Investors } from "../../Components/Investors/Investors";
+import Investors from "../../Components/Investors/Investors";
 import "./LiveMarket.css";
 
 function LiveMarket() {
