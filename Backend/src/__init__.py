@@ -14,3 +14,4 @@ cors = CORS(app=app, resource={r"/*": {"origins": "*"}})
 app.register_blueprint(services.stock_news_service)
 app.register_blueprint(services.stock_quote_service)
 
+  

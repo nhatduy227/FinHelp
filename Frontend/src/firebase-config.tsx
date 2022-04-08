@@ -1,11 +1,10 @@
 import firebase, { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import {
-  collection,
-  doc,
-  DocumentData,
   getFirestore,
+  doc,
   setDoc,
+  getDoc
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -23,8 +22,15 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore();
 
-export const createUserDocument = async (user: any, PortfolioInfo: any) => {
-  if (!user) return;
-
-  // TODO: create a snapshot on firestore with the uid from authentication
+// firebase util functions
+export const updateFirestoreUser = async (userId: any, userData: any) => {
+  const userRef = doc(db, "users", userId);
+  return await setDoc(userRef, userData);
 };
+
+export const getFirestoreUser = async (userId: any) => {
+  const userRef = doc(db, "users", userId);
+  return await getDoc(userRef);
+};
+
+
