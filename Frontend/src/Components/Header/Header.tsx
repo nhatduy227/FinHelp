@@ -1,5 +1,4 @@
 import './Header.css';
-import { Navigate } from 'react-router-dom';
 import { auth } from "../../firebase-config";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
@@ -17,7 +16,6 @@ import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
-import { auth } from "../../firebase-config";
 import * as React from 'react';
 import { useNavigate } from "react-router-dom";
 
