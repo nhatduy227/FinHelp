@@ -1,5 +1,6 @@
 import './Header.css';
-
+import { Navigate } from 'react-router-dom';
+import { auth } from "../../firebase-config";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -79,6 +80,9 @@ const Header = () => {
 
   const classes = useStyles();
   const navigate = useNavigate();
+  const clearLocalStorage = () => {
+    localStorage.clear()
+  }
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -120,7 +124,8 @@ const Header = () => {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
-      <MenuItem onClick={signOut}>Log Out</MenuItem>
+      <MenuItem onClick={signOut}>Sign Out</MenuItem>
+      <MenuItem onClick={clearLocalStorage}>Clear Cache</MenuItem>
     </Menu>
   );
 

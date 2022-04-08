@@ -1,12 +1,24 @@
 import React from "react";
-import { auth, setFirestoreUser } from "../../firebase-config";
+import Button from "@mui/material/Button";
+import { makeStyles } from "@mui/styles";
+import { auth, updateFirestoreUser } from "../../firebase-config";
+
 import {
   signInWithPopup,
   GoogleAuthProvider,
   getAdditionalUserInfo,
 } from "firebase/auth";
+import "./Login.css";
+import "../../index.css";
+
+const useStyles = makeStyles({
+  button: {
+    alignSelf: "center",
+  },
+});
 
 function Login() {
+  const classes = useStyles();
   const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
 
@@ -22,7 +34,7 @@ function Login() {
             investingStrategy: "",
             deposit: 0,
           };
-          await setFirestoreUser(user.uid, userData);
+          await updateFirestoreUser(user.uid, userData);
         } else {
           console.log("User already exists");
         }
@@ -32,9 +44,21 @@ function Login() {
       });
   };
   return (
-    <div>
-      <p>Landing Page</p>
-      <button onClick={signInWithGoogle}>Get Started</button>
+    <div className="background">
+      <div className="circle" />
+      <div>
+        <h1>All-in-one hub for beginner investors</h1>
+        <h2>Investing made easy</h2>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          style={{ color: "white" }}
+          onClick={signInWithGoogle}
+        >
+          <div className="button">Get Started</div>
+        </Button>
+      </div>
     </div>
   );
 }
