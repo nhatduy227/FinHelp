@@ -1,4 +1,4 @@
-def list_news_by_company(finhub, parameters):
+def list_news_by_company(data_source, parameters):
     if "symbol" not in parameters:
         return {
             "message": "missing parameter: \"symbol\"",
@@ -12,6 +12,6 @@ def list_news_by_company(finhub, parameters):
 
     return {
         "message": "successfully query",
-        "data": finhub.list_news_by_company(params["symbol"], params["limit"], params["page"]),
+        "data": data_source.list_news_by_company(params["symbol"], params["limit"], params["page"]),
         "status_code": 200
     }

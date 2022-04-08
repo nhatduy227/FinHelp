@@ -1,11 +1,7 @@
 import datetime
+import math
 
 
-def get_from_to_time(self):
-    to_date_str = datetime.datetime.now().strftime("%m-%d-%Y")
-    from_date_str = datetime.date(
-        datetime.date.today().year - 1,
-        datetime.date.today().month,
-        datetime.date.today().day
-    )
-    return to_date_str, from_date_str
+def validate_time_option(time_option):
+    time_options = ["1D", "5D", "1M", "6M", "YTD", "1Y", "5Y", "Max"]
+    return time_option in time_options
