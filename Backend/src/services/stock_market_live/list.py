@@ -2,7 +2,7 @@ import datetime
 import math
 from urllib import response
 def convert_time(timestamp):
-    return datetime.datetime.fromtimestamp(timestamp).strftime('%m-%d-%y')
+    return datetime.datetime.fromtimestamp(timestamp).strftime('%b-%d-%Y')
 def list_filter_stock_prices_by_company(finhub,parameters):
     if "symbol" not in parameters:
         return {
@@ -24,7 +24,9 @@ def list_filter_stock_prices_by_company(finhub,parameters):
  
     close_date_response = finhub.list_filter_stock_prices_by_company(params["symbol"], params["resolution"], _from, _to)
     closeList = close_date_response[0]
-    dateList = [convert_time(timestamp) for timestamp in close_date_response[1]]
+    dateList = close_date_response[1]
+    # dateList = [convert_time(timestamp) for timestamp in close_date_response[1]]
+
     
     return {
         "message": "successfully query",
