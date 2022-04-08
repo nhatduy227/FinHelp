@@ -7,7 +7,7 @@ from config.config import Config
 class FinnHub:
     def __init__(self):
         self.client = finnhub.Client(Config.finhub_api_key)
-
+        # print('domain is',Config.finhub_api_domain)
     def list_news_by_company(self, symbol, limit=10, page=1):
         if limit <= 0:
             limit = 10
@@ -25,3 +25,7 @@ class FinnHub:
         paging_data = data[start:end]
 
         return paging_data
+    def list_filter_stock_prices_by_company(self, symbol, resolution,_from,_to):
+        close = self.client.stock_candles(symbol, resolution, _from, _to)['c']
+        date = self.client.stock_candles(symbol, resolution, _from, _to)['t']
+        return close,date
