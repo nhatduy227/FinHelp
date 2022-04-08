@@ -1,14 +1,10 @@
 import './Dashboard.css';
 
 import { useRowFlexStyles } from '@mui-treasury/styles/flex/row';
-import { useGutterBorderedGridStyles } from '@mui-treasury/styles/grid/gutterBordered';
 import { usePushingGutterStyles } from '@mui-treasury/styles/gutter/pushing';
 import { useLabelIconStyles } from '@mui-treasury/styles/icon/label';
-import { useFadedShadowStyles } from '@mui-treasury/styles/shadow/faded';
-import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import ShareIcon from '@mui/icons-material/Share';
-import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -23,11 +19,12 @@ import cx from 'clsx';
 import React, { useEffect, useState } from 'react';
 
 import { Item } from '../../Components/ButtonSeries/Item';
+import Investors from '../../Components/Investors/Investors';
 import { News } from '../../Models/News';
 import { getNews } from '../../Services/NewsService';
 import theme from '../../theme/theme';
 import { timeDifference } from '../../Util/convertDate';
-import { followers, symbols } from './DashboardData';
+import { symbols } from './DashboardData';
 
 const useStyles = makeStyles({
   card: {
@@ -39,7 +36,6 @@ const useStyles = makeStyles({
   media: {
     minWidth: '25%',
     maxWidth: '25%',
-    // flexShrink: 0,
     backgroundImage: `url("https://www.globalpharmatek.com/wp-content/uploads/2016/10/orionthemes-placeholder-image.jpg")`,
     borderRadius: 12,
     boxShadow: '0 2px 8px 0 #c1c9d7, 0 -2px 8px 0 #cce1e9',
@@ -52,7 +48,6 @@ const useStyles = makeStyles({
     "&:last-child": {
       paddingBottom: 0
     },
-    // marginTop: 20,
     width: '80%'
   },
   heading: {
@@ -81,9 +76,7 @@ const useStyles = makeStyles({
     fontSize: '1.2rem',
     verticalAlign: 'bottom',
   },
-  headerSection: {
-    marginTop: theme.spacing(5)
-  },
+
   textHolder: {
     overflow: 'hidden',
     height: theme.spacing(8),
@@ -94,17 +87,6 @@ const useStyles = makeStyles({
   },
   followButton: {
     width: theme.spacing(10)
-  },
-  cardFollow: {
-    borderRadius: 12,
-    // minWidth: 256,
-    width: '100%',
-    textAlign: 'center',
-  },
-  avatar: {
-    width: 60,
-    height: 60,
-    margin: 'auto',
   },
   headingFollow: {
     fontSize: 18,
@@ -231,7 +213,6 @@ function NewsSection() {
         flexDirection: 'column',
         justifyContent: 'flex-start',
       }}
-    // className={classes.headerSection}
     >
       <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
         Top picks for you
@@ -310,86 +291,11 @@ function NewsSection() {
   )
 }
 
-function InvestorSection() {
-  const classes = useStyles();
-
-  const [follow, setFollow] = useState<Array<number>>([]);
-  const shadowStyles = useFadedShadowStyles();
-
-  const borderedGridStyles = useGutterBorderedGridStyles({
-    borderColor: 'rgba(0, 0, 0, 0.08)',
-    height: '50%',
-  });
-
-  const handleFollowClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setFollow(existingItems => {
-      return [
-        ...existingItems,
-        parseInt(event.currentTarget.value)
-      ]
-    })
-  }
-
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-      }}
-      className={classes.headerSection}
-    >
-      <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-        <HistoryEduIcon />
-        Investors you should follow
-      </Typography>
-      <Grid container spacing={2} sx={{ mt: 2 }}>
-        {
-          followers.map((item, index) => {
-            return (
-              <Grid item xs={6} md={4} lg={2}>
-                <Card
-                  className={cx(classes.cardFollow, shadowStyles.root)}
-                  sx={{
-                    p: 2,
-                    mr: 5
-                  }}
-                >
-                  <CardContent>
-                    <Avatar className={classes.avatar} src={'https://i.pravatar.cc/300'} sx={{ width: 80, height: 80 }} />
-                    <Typography variant="body1" sx={{ fontWeight: 'bold' }} >
-                      {item.name}
-                    </Typography>
-                    <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-                      {item.handle}
-                    </Typography>
-
-                  </CardContent>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    style={{ color: 'white', width: '100%' }}
-                    value={index}
-                    onClick={handleFollowClick}
-                    disabled={follow.includes(index) ? true : false}
-                  >
-                    {follow.includes(index) ? "Followed" : "Follow"}
-                  </Button>
-                </Card>
-              </Grid>
-            )
-          })
-        }
-      </Grid>
-    </Box>
-  );
-}
-
 function Dashboard() {
   return (
     <div style={{ width: '100%' }}>
       <NewsSection />
-      <InvestorSection />
+      <Investors />
     </div>
   );
 }
