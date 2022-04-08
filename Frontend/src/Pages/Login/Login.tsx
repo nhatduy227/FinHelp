@@ -1,5 +1,5 @@
 import React from "react";
-import { auth, updateFirestoreUser } from "../../firebase-config";
+import { auth, setFirestoreUser } from "../../firebase-config";
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -9,18 +9,20 @@ import {
 function Login() {
   const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
+
     signInWithPopup(auth, provider)
       .then(async (result) => {
         const user = result.user;
         const isNewUser = getAdditionalUserInfo(result);
         if (isNewUser) {
           const userData = {
-            uid : user.uid,
+            uid: user.uid,
             userName: user.displayName,
             profilePic: user.photoURL,
             investingStrategy: "",
-            deposit: 0,          };
-          await updateFirestoreUser(user.uid, userData);
+            deposit: 0,
+          };
+          await setFirestoreUser(user.uid, userData);
         } else {
           console.log("User already exists");
         }

@@ -16,7 +16,9 @@ import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
+import { auth } from "../../firebase-config";
 import * as React from 'react';
+import { useNavigate } from "react-router-dom";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -76,6 +78,7 @@ const Header = () => {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const classes = useStyles();
+  const navigate = useNavigate();
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -92,6 +95,11 @@ const Header = () => {
 
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const signOut = () => {
+    auth.signOut();
+    navigate("/");
   };
 
   const menuId = 'primary-search-account-menu';
@@ -112,7 +120,7 @@ const Header = () => {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+      <MenuItem onClick={signOut}>Log Out</MenuItem>
     </Menu>
   );
 

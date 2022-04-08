@@ -4,7 +4,8 @@ import {
   getFirestore,
   doc,
   setDoc,
-  getDoc
+  getDoc,
+  updateDoc
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -23,10 +24,15 @@ export const auth = getAuth(app);
 export const db = getFirestore();
 
 // firebase util functions
-export const updateFirestoreUser = async (userId: any, userData: any) => {
+export const setFirestoreUser = async (userId: any, userData: any) => {
   const userRef = doc(db, "users", userId);
   return await setDoc(userRef, userData);
 };
+
+export const updateFirestoreUser = async (userId: any, userData: any) => {
+  const userRef = doc(db, "users", userId);
+  return await updateDoc(userRef, userData);  
+}
 
 export const getFirestoreUser = async (userId: any) => {
   const userRef = doc(db, "users", userId);
@@ -36,7 +42,6 @@ export const getFirestoreUser = async (userId: any) => {
 
     if (docSnap.exists()) {
       const userData = docSnap.data();
-      console.log(userData)
 
       return userData
     }

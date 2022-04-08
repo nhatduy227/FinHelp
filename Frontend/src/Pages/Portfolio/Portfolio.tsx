@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     flexWrap: 'wrap',
   },
   sticker: {
-    width: '10vw',
+    width: '80%',
     paddingLeft: theme.spacing(2),
     color: 'white',
   },
@@ -51,7 +51,11 @@ const useStyles = makeStyles({
   },
   profile: {
     alignSelf: 'center'
-  }
+  },
+  profileName: {
+    textAlign: 'center',
+    alignSelf: 'center'
+  },
 })
 
 function splitArr(stockData: Array<Asset>) {
@@ -284,7 +288,7 @@ function Portfolio() {
           }}
           className={classes.profile}
         />
-        <Box className={classes.profile}>
+        <Box className={classes.profileName}>
           <Typography variant='h5' sx={{ fontWeight: 'bold' }}>
             {userData?.userName}
           </Typography>
