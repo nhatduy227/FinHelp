@@ -16,6 +16,7 @@ import React, { useState } from 'react';
 import { auth, updateFirestoreUser } from '../../firebase-config';
 import { GettingStarted } from '../../Models/GettingStarted';
 import theme from '../../theme/theme';
+import { Item } from '../../Components/ButtonSeries/Item';
 import { depositData, formData } from './OnboardingData';
 
 const useStyles = makeStyles({
@@ -53,24 +54,6 @@ const useStyles = makeStyles({
     },
   }
 })
-
-function Item(props: ButtonProps) {
-  const { sx, ...other } = props;
-  return (
-    <Button
-      variant="contained"
-      sx={{
-        m: 1,
-        // backgroundColor: "transparent",
-        borderRadius: 2,
-        boxShadow: 'none',
-        width: '25%',
-        ...sx,
-      }}
-      {...other}
-    />
-  );
-}
 
 function GetStartedForm() {
   const classes = useStyles();
