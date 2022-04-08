@@ -33,6 +33,7 @@ function Login() {
             profilePic: user.photoURL,
             investingStrategy: "",
             deposit: 0,
+            stock: []
           };
           await updateFirestoreUser(user.uid, userData);
         } else {
