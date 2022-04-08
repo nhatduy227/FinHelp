@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import TextField from "@mui/material/TextField";
 import Graph from "../../Components/Graph/Graph";
 import Button from "@mui/material/Button";
 import Filter from "../../Components/Filter/Filter";
@@ -20,9 +21,15 @@ function LiveMarket() {
     },
   };
   const [show, setShow] = useState(false);
+  const [action, setAction] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  function handleShow(action:any)
+  {
+    setAction(action)
+    setShow(true);
+  }
+  
   return (
     <>
       <div className="container">
@@ -35,7 +42,7 @@ function LiveMarket() {
               variant="contained"
               color="error"
               style={{ color: "white" }}
-              onClick={handleShow}
+              onClick={() => handleShow("sell")}
             >
               <div className="sell">SELL</div>
             </Button>
@@ -45,7 +52,7 @@ function LiveMarket() {
               variant="contained"
               color="primary"
               style={{ color: "white" }}
-              onClick={handleShow}
+              onClick={() => handleShow("buy")}
             >
               <div className="buy">BUY</div>
             </Button>
@@ -59,9 +66,23 @@ function LiveMarket() {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <Typography variant="h6">
-          How much stocks do you want to buy?
-        </Typography>
+        <div className="btn-container">
+          <Typography variant="h6">
+            How much stocks do you want to {action}?
+          </Typography>
+        </div>
+        <div className="btn-container">
+          <TextField
+            // error={errorStatus}
+            // helperText={errorStatus ? "Please enter the valid amount" : ""}
+            id="standard-basic"
+            label="Amount"
+            variant="standard"
+            // onChange={(v) => handleDepositAmount(v.target.value)}
+            defaultValue={0}
+          />
+        </div>
+
         <div className="btn-container">
           <div className="btn">
             <Button
@@ -70,7 +91,7 @@ function LiveMarket() {
               style={{ color: "white" }}
               onClick={handleClose}
             >
-              <div className="sell">CLOSE</div>
+              <div className="close">CLOSE</div>
             </Button>
           </div>
           <div className="btn">
@@ -79,7 +100,7 @@ function LiveMarket() {
               color="primary"
               style={{ color: "white" }}
             >
-              <div className="buy">CONFIRM</div>
+              <div className="confirm">CONFIRM</div>
             </Button>
           </div>
         </div>
