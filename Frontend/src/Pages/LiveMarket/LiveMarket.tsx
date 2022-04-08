@@ -5,7 +5,7 @@ import Graph from "../../Components/Graph/Graph";
 import Button from "@mui/material/Button";
 import Filter from "../../Components/Filter/Filter";
 import { Typography } from "@mui/material";
-import { Investors } from "../../Components/Investors/Investors";
+import Investors from "../../Components/Investors/Investors";
 import "./LiveMarket.css";
 
 function LiveMarket() {
