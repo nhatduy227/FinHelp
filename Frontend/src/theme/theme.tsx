@@ -20,7 +20,10 @@ export default createTheme({
       fontFamily: 'Roboto',
       fontWeightBold: 500,
       button: {
-          textTransform: 'none',
+          textTransform: 'none'
+      },
+      h1: {
+        fontFamily: '"Righteous"',
       }
   }
 });

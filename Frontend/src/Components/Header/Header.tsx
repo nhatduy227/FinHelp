@@ -1,5 +1,5 @@
 import './Header.css';
-
+import { auth } from "../../firebase-config";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -17,6 +17,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import * as React from 'react';
+import { useNavigate } from "react-router-dom";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -76,6 +77,10 @@ const Header = () => {
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const classes = useStyles();
+  const navigate = useNavigate();
+  const clearLocalStorage = () => {
+    localStorage.clear()
+  }
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -92,6 +97,11 @@ const Header = () => {
 
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const signOut = () => {
+    auth.signOut();
+    navigate("/");
   };
 
   const menuId = 'primary-search-account-menu';
@@ -111,9 +121,9 @@ const Header = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My Portfolio</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
+      <MenuItem onClick={signOut}>Sign Out</MenuItem>
+      <MenuItem onClick={clearLocalStorage}>Clear Cache</MenuItem>
     </Menu>
   );
 

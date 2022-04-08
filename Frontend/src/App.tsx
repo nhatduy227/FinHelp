@@ -3,7 +3,6 @@ import './App.css';
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
 import Header from './Components/Header/Header';
 import NavBar from './Components/NavBar/NavBar';
 import { auth } from './firebase-config';
@@ -12,6 +11,7 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import LiveMarket from './Pages/LiveMarket/LiveMarket';
 import Login from './Pages/Login/Login';
 import Onboarding from "./Pages/Onboarding/Onboarding";
+import Portfolio from './Pages/Portfolio/Portfolio';
 
 function App() {
   const [isUserSignedIn, setIsUserSignedIn] = useState(false);
@@ -42,8 +42,12 @@ function App() {
       <Routes>
         <Route path="/LiveMarket" element={<LiveMarket />} />
       </Routes>
+      <Routes>
+        <Route path="/Portfolio" element={<Portfolio />} />
+      </Routes>
     </div>
   )
+
 
   if (isUserSignedIn === true) {
     if (firstTimeUser === true) {
@@ -52,17 +56,18 @@ function App() {
           <Route path="/" element={<Onboarding />} />
         </Routes>
       </Router>)
+    } else {
+      return (
+        <Router>
+          <div>
+            <Header />
+            <NavBar>
+              {renderRoute}
+            </NavBar>
+          </div>
+        </Router>
+      );
     }
-    return (
-      <Router>
-        <div>
-          <Header />
-          <NavBar>
-            {renderRoute}
-          </NavBar>
-        </div>
-      </Router>
-    );
   } else {
     return (
       <Router>
