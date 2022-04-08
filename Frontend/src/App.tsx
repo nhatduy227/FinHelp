@@ -56,17 +56,18 @@ function App() {
           <Route path="/" element={<Onboarding />} />
         </Routes>
       </Router>)
+    } else {
+      return (
+        <Router>
+          <div>
+            <Header />
+            <NavBar>
+              {renderRoute}
+            </NavBar>
+          </div>
+        </Router>
+      );
     }
-    return (
-      <Router>
-        <div>
-          <Header />
-          <NavBar>
-            {renderRoute}
-          </NavBar>
-        </div>
-      </Router>
-    );
   } else {
     return (
       <Router>

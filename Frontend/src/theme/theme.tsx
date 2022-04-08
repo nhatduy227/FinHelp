@@ -21,6 +21,9 @@ export default createTheme({
       fontWeightBold: 500,
       button: {
           textTransform: 'none'
+      },
+      h1: {
+        fontFamily: '"Righteous"',
       }
   }
 });

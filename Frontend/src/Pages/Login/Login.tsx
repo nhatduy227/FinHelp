@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
 import { auth, updateFirestoreUser } from "../../firebase-config";
+
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -20,6 +21,7 @@ function Login() {
   const classes = useStyles();
   const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
+
     signInWithPopup(auth, provider)
       .then(async (result) => {
         const user = result.user;
