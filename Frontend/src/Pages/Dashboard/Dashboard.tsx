@@ -6,9 +6,6 @@ import News from "../../Components/News/News";
 function Dashboard() {
   return (
     <div className="container">
-      {/* <p>Dashboard</p>
-
-      <button onClick={signOut}>Sign Out</button> */}
       <News/>
       <Investors/>
     </div>

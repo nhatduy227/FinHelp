@@ -11,13 +11,6 @@ import React, { useEffect, useState } from "react";
 
 function Graph(props: any) {
   let ticker = props.ticker;
-  const configuration = {
-    method: "GET",
-    headers: {
-      "X-API-KEY": "KuVSHSUFer7TmloSc20vi8Fvs9qapOVa2CMIKoR6",
-      Accept: "application/json",
-    },
-  };
   const dummyData = [
     {
       date: "April 5",
@@ -43,11 +36,8 @@ function Graph(props: any) {
   const [data, setData] = useState([]);
   const getData = async (ticker: any) => {
     try {
-      //   const response = await fetch(
-      //     `https://yfapi.net/v8/finance/chart/${ticker}`, configuration
-      //   );
       const response = await fetch(
-        `https://yfapi.net/v8/finance/chart/${ticker}`
+        `http://127.0.0.1:5000/price/list?symbol=${ticker}&daynum=10&resolution=1`
       );
       let data = await response.json();
       console.log(data);
@@ -60,7 +50,7 @@ function Graph(props: any) {
     getData(ticker);
   }, []);
   return (
-    <ResponsiveContainer width="100%" height={400}>
+    <ResponsiveContainer width="100%" height={300}>
       <AreaChart data={dummyData}>
         <defs>
           <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
