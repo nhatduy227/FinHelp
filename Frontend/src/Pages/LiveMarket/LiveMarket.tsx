@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,  useEffect} from "react";
+import { auth, getFirestoreUser } from '../../firebase-config';
 import Modal from "react-modal";
 import TextField from "@mui/material/TextField";
 import Graph from "../../Components/Graph/Graph";
 import Button from "@mui/material/Button";
+import { User } from '../../Models/User';
+import { DocumentData } from 'firebase/firestore';
 import Filter from "../../Components/Filter/Filter";
 import { Typography } from "@mui/material";
 import { Investors } from "../../Components/Investors/Investors";
@@ -10,6 +13,16 @@ import "./LiveMarket.css";
 
 function LiveMarket() {
   const dummyTicker = "AAPL";
+  const uuid = auth.currentUser?.uid
+  const [userData, setUserData] = useState<User | DocumentData>();
+
+  useEffect(() => {
+    getFirestoreUser(uuid).then(function (data) {
+      setUserData(data);
+
+      return data
+    })
+  }, [uuid])
   const customStyles = {
     content: {
       top: "50%",
