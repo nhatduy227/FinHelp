@@ -98,7 +98,6 @@ function AssetOwn(props: Asset) {
           m: 1,
         }}
       >
-        {/* <AppleIcon className={classes.stockLogo} /> */}
         {logo}
         <div className={classes.sticker}>
           <Typography variant="subtitle1">
