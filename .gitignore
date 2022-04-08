@@ -29,5 +29,5 @@ Backend/venv/
 Backend/.env
 Backend/.idea/
 
-*/__pycache__/
+__pycache__/
 Backend/config/.env
