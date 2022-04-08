@@ -3,7 +3,6 @@ import './App.css';
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
 import Header from './Components/Header/Header';
 import NavBar from './Components/NavBar/NavBar';
 import { auth } from './firebase-config';
