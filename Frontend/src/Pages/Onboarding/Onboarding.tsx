@@ -41,6 +41,9 @@ const useStyles = makeStyles({
   highlightText: {
     color: theme.palette.primary.main
   },
+  normalText: {
+    color: '#000000',
+  },
   caption: {
     textAlign: 'left'
   },
@@ -281,15 +284,15 @@ function WelcomeLine() {
       className={classes.caption}
     >
       <Box>
-        <Typography display="inline" variant="h1">Tell </Typography>
+        <Typography display="inline" variant="h1" className={classes.normalText}>Tell </Typography>
         <Typography display="inline" variant="h1" className={classes.highlightText}>us</Typography>
       </Box>
       <Box>
-        <Typography display="inline" variant="h1">a little </Typography>
+        <Typography display="inline" variant="h1" className={classes.normalText}>a little </Typography>
         <Typography display="inline" variant="h1" className={classes.highlightText}>more</Typography>
       </Box>
       <Box>
-        <Typography display="inline" variant="h1">about </Typography>
+        <Typography display="inline" variant="h1" className={classes.normalText}>about </Typography>
         <Typography display="inline" variant="h1" className={classes.highlightText}>you</Typography>
       </Box>
     </Box>
