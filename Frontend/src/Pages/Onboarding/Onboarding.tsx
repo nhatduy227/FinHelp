@@ -104,7 +104,7 @@ function GetStartedForm() {
   }
 
   const updateData = async () => {
-    const uuid = auth.currentUser?.uid
+    const uid = auth.currentUser?.uid
 
     const updatedData: GettingStarted = {
       industry: industry,
@@ -112,7 +112,7 @@ function GetStartedForm() {
       deposit: depositAmount
     }
 
-    await updateFirestoreUser(uuid, updatedData);
+    await updateFirestoreUser(uid, updatedData);
   }
 
   const completeOnboarding = async () => {

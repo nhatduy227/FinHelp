@@ -95,6 +95,10 @@ const Header = () => {
     handleMobileMenuClose();
   };
 
+  const moveToProfile = () => {
+    navigate('/Profile');
+  }
+
   const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
@@ -121,7 +125,7 @@ const Header = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
+      <MenuItem onClick={moveToProfile}>My Profile</MenuItem>
       <MenuItem onClick={signOut}>Sign Out</MenuItem>
       <MenuItem onClick={clearLocalStorage}>Clear Cache</MenuItem>
     </Menu>
