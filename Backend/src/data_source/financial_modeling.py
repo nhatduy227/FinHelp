@@ -25,4 +25,7 @@ class FinancialModeling:
 
         final_link = response[0]["finalLink"]
 
-        return utils.summarize_article(final_link, length)
+        paragraph = utils.summarize_article(final_link, length)
+        list = []
+        sentence_list = paragraph.split('.')
+        return sentence_list
