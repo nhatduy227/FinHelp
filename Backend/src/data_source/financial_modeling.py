@@ -1,6 +1,7 @@
 import requests
 from config.config import Config
 from src import utils
+from src.data_source.finBERT import NLPScoring
 
 
 class FinancialModeling:
@@ -26,6 +27,7 @@ class FinancialModeling:
         final_link = response[0]["finalLink"]
 
         paragraph = utils.summarize_article(final_link, length)
-        list = []
+        sentence_list = []
         sentence_list = paragraph.split('.')
-        return sentence_list
+        score = NLPScoring(sentence_list)
+        return {'summary':paragraph, 'score':score}
