@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import './News.css'
 // import {NewsData} from "./NewsData"
+
 import Filter from "../Filter/Filter";
 import Articles from "../Articles/Articles";
 
@@ -47,11 +48,8 @@ const News=()=>{
         <div >
         {/* pass filterHandler to Filter component, 
             pass filtArticles to Articles component */}
-            
             <Filter /> 
             <Articles /> 
-
-        
         </div>
     )
 }

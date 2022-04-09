@@ -1,3 +1,64 @@
 .container {
     text-align: center;
+    position: relative;
+}
+.header-area .title{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+    color: #072D4B;
+}
+.report-content {
+    /* font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 47px;
+    display: flex;
+    align-items: center;
+    color:red; */
+}
+.related-report .title{ 
+    text-align: left;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    margin-bottom: 20px;
+    color: #072D4B;
+}
+.related-report-card img{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 66px;
+    object-fit: cover;
+
+}
+.related-report-card .card-title{
+    /* margin-top: 12px; */
+    /* margin-bottom: 12px; */
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #072D4B;
+}
+.related-report-card .date{
+    margin-top: 12px;
+    /* margin-bottom: 12px; */
+}
+.related-report-card .viewMore{
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+.related-report-card{
+    text-align: center;
+    display: inline-block;
+    width: 142px;
+    height: 185px;
 }
