@@ -2,6 +2,7 @@ export interface User {
     deposit: number,
     investingStrategy: String,
     profilePic: String,
-    uuid: String,
+    uid: String,
     userName: String
+    stock: Array<String>
   }

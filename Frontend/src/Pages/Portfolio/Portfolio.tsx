@@ -257,17 +257,17 @@ function History() {
 }
 
 function Portfolio() {
-  const uuid = auth.currentUser?.uid
+  const uid = auth.currentUser?.uid
   const classes = useStyles();
   const [userData, setUserData] = useState<User | DocumentData>();
 
   useEffect(() => {
-    getFirestoreUser(uuid).then(function (data) {
+    getFirestoreUser(uid).then(function (data) {
       setUserData(data);
 
       return data
     })
-  }, [uuid])
+  }, [uid])
 
   return (
     <div style={{ width: '100%' }}>
