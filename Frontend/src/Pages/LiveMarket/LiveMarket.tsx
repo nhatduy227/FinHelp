@@ -16,6 +16,7 @@ import Investors from "../../Components/Investors/Investors";
 import "./LiveMarket.css";
 
 function LiveMarket() {
+  // const dummyTicker = "AMZN";
   const dummyTicker = "AAPL";
   const uid = auth.currentUser?.uid;
   const [userData, setUserData] = useState<User | DocumentData>();
@@ -67,21 +68,24 @@ function LiveMarket() {
     } else {
       const existedStock = stock.filter((s) => s.ticker === ticker);
       let updateStock;
-      if (existedStock) {
-        updateStock = {
-          ...existedStock[0],
-          amount: existedStock[0]?.amount + amount,
-        };
+      if (existedStock.length === 1) {
+        for (var i = 0; i < stock.length; ++i) {
+          if (stock[i]["ticker"] === ticker) {
+            stock[i]["amount"] += amount;
+          }
+        }
       } else {
-        updateStock = {
-          ticker: ticker,
-          amount: amount,
-        };
+        updateStock = stock.concat([
+          {
+            ticker: ticker,
+            amount: amount,
+          },
+        ]);
       }
       const updateData = {
         ...userData,
         deposit: deposit - amount,
-        stock: [updateStock],
+        stock: existedStock.length === 1 ? stock : updateStock,
       };
       await updateFirestoreUser(uid, updateData);
       alert(`$${amount} of ${ticker} stockes has been bought`);
@@ -96,14 +100,15 @@ function LiveMarket() {
     if (existedStock[0]?.ticker != ticker && existedStock[0]?.amount < amount) {
       alert(`No stock available to sell`);
     } else {
-      const updateStock = {
-        ...existedStock[0],
-        amount: existedStock[0]?.amount - amount,
-      };
+      for (var i = 0; i < stock.length; ++i) {
+        if (stock[i]["ticker"] === ticker) {
+          stock[i]["amount"] -= amount;
+        }
+      }
       const updateData = {
         ...userData,
         deposit: deposit + amount,
-        stock: [updateStock],
+        stock: stock,
       };
       await updateFirestoreUser(uid, updateData);
       alert(`$${amount} of ${ticker} stockes has been sold`);
