@@ -1,4 +1,4 @@
-const industry = [
+export const industry = [
     "Agriculture",
     "Chemical industries",
     "Commerce",
