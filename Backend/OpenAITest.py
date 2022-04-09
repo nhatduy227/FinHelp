@@ -1,14 +1,20 @@
 import openai
-import sys
-import os
+import requests
+from bs4 import BeautifulSoup
 
-openai.api_key = "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"
-with open(os.path.join(sys.path[0], "data.txt"), "r", encoding="utf8") as f:
-    data = f.read()
+
+load_html = requests.get("https://www.microsoft.com/investor/reports/ar21/index.html").text
+
+soup = BeautifulSoup(load_html).text.replace("\n", " ").strip()
+
+print(soup)
+
+
+openai.api_key = "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"
 
 response = openai.Completion.create(
   engine="text-davinci-002",
-  prompt= data, 
+  prompt=soup,
   temperature=0.7,
   max_tokens=64,
   top_p=1.0,
@@ -16,8 +22,8 @@ response = openai.Completion.create(
   presence_penalty=0.0
 )
 
-for key,values in response.items(): 
-  if key == "choices": 
-    for field in values:
-      print(field.text)
+for key, values in response.items():
+    if key == "choices":
+        for field in values:
+            print(field.text)
 
