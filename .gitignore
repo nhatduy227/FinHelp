@@ -30,5 +30,6 @@ Backend/.env
 Backend/.idea/
 
 __pycache__/
+analyst_tone/
 Backend/config/.env
 .env
