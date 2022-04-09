@@ -15,9 +15,13 @@ import MenuItem from '@mui/material/MenuItem';
 import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
 import { makeStyles } from '@mui/styles';
-import * as React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import Autocomplete from '@mui/material/Autocomplete';
+
+import { Companies } from './HeaderData';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -76,6 +80,8 @@ const Header = () => {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  const [search, setSearch] = useState<string>('');
+
   const classes = useStyles();
   const navigate = useNavigate();
   const clearLocalStorage = () => {
@@ -107,6 +113,16 @@ const Header = () => {
     auth.signOut();
     navigate("/");
   };
+
+  const handleSearchChange = (event: React.SyntheticEvent<Element, Event>, searchString: string) => {
+    console.log(event);
+
+    setSearch(searchString);
+    if (event.type === 'click') {
+      console.log("Move to new page");
+      navigate('/Livemarket', { state: searchString })
+  }
+}
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -201,13 +217,19 @@ const Header = () => {
           </Box>
           <Box sx={{ flexGrow: 0.2 }} />
           <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search for stocks..."
-              inputProps={{ 'aria-label': 'search' }}
-              fullWidth
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={Companies}
+              getOptionLabel={(option) => option.label}
+              sx={{ mf: 5 }}
+              renderInput={(params) => <TextField {...params} />}
+              popupIcon={<SearchIcon />}
+              forcePopupIcon={true}
+              inputValue={search}
+              onInputChange={(event, newInputValue) => {
+                handleSearchChange(event, newInputValue);
+              }}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />

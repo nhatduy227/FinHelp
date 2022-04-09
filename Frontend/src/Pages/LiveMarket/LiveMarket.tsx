@@ -12,12 +12,18 @@ import { User } from "../../Models/User";
 import { DocumentData } from "firebase/firestore";
 import Filter from "../../Components/Filter/Filter";
 import { Typography } from "@mui/material";
+import { useLocation } from "react-router-dom";
 import Investors from "../../Components/Investors/Investors";
 import "./LiveMarket.css";
 
 function LiveMarket() {
   // const dummyTicker = "AMZN";
-  const dummyTicker = "AAPL";
+  const { state } = useLocation();
+  const ticker = state as string;
+
+  console.log(state)
+
+  const dummyTicker = (ticker !== null) ? ticker : "AAPL";
   const uid = auth.currentUser?.uid;
   const [userData, setUserData] = useState<User | DocumentData>();
 
@@ -118,7 +124,7 @@ function LiveMarket() {
 
   return (
     <>
-      <div className="container">
+      <div className="container" style={{ width: '100%' }}>
         <strong>{dummyTicker}</strong>
         <Filter />
         <Graph ticker={dummyTicker} />
