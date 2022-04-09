@@ -1,3 +1,4 @@
+import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import ReactDOM from 'react-dom';
 
@@ -9,6 +10,7 @@ const container = document.getElementById('root');
 //Initial render
 ReactDOM.render(
     <ThemeProvider theme={theme}>
+        <CssBaseline />
         <App />
     </ThemeProvider>,
     container

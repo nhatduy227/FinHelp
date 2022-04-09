@@ -5,49 +5,49 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 
 export const PortfolioData = [
     {
-        logo: <AppleIcon />,
+        logo: <AppleIcon style={{ color: 'white' }} />,
         sticker: "AAPL",
         amount: 2020.25,
         color: "linear-gradient(200deg, #000000, #676767)"
     },
     {
-        logo: <FacebookIcon />,
+        logo: <FacebookIcon style={{ color: 'white' }} />,
         sticker: "FB",
         amount: 5000,
         color: "linear-gradient(200deg, #5CE2FF, #0038FF)"
     },
     {
-        logo: <TwitterIcon />,
+        logo: <TwitterIcon style={{ color: 'white' }} />,
         sticker: "TWTR",
         amount: 1112.32,
         color: "linear-gradient(200deg, #5CE2FF, #80B2BD)"
     },
     {
-        logo: <GoogleIcon />,
+        logo: <GoogleIcon style={{ color: 'white' }} />,
         sticker: "GOOG",
         amount: 23123,
         color: "linear-gradient(200deg, #E7EB26, #FF5C00)"
     },
     {
-        logo: <GoogleIcon />,
+        logo: <GoogleIcon style={{ color: 'white' }} />,
         sticker: "GOOG",
         amount: 23123,
         color: "linear-gradient(200deg, #E7EB26, #FF5C00)"
     },
     {
-        logo: <AppleIcon />,
+        logo: <AppleIcon style={{ color: 'white' }} />,
         sticker: "AAPL",
         amount: 2020.25,
         color: "linear-gradient(200deg, #000000, #676767)"
     },
     {
-        logo: <FacebookIcon />,
+        logo: <FacebookIcon style={{ color: 'white' }} />,
         sticker: "FB",
         amount: 5000,
         color: "linear-gradient(200deg, #5CE2FF, #0038FF)"
     },
     {
-        logo: <TwitterIcon />,
+        logo: <TwitterIcon style={{ color: 'white' }} />,
         sticker: "TWTR",
         amount: 1112.32,
         color: "linear-gradient(200deg, #5CE2FF, #80B2BD)"

@@ -3,7 +3,6 @@ import './App.css';
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
 import Header from './Components/Header/Header';
 import NavBar from './Components/NavBar/NavBar';
 import { auth } from './firebase-config';
@@ -49,6 +48,7 @@ function App() {
     </div>
   )
 
+
   if (isUserSignedIn === true) {
     if (firstTimeUser === true) {
       return (<Router>
@@ -56,17 +56,18 @@ function App() {
           <Route path="/" element={<Onboarding />} />
         </Routes>
       </Router>)
+    } else {
+      return (
+        <Router>
+          <div>
+            <Header />
+            <NavBar>
+              {renderRoute}
+            </NavBar>
+          </div>
+        </Router>
+      );
     }
-    return (
-      <Router>
-        <div>
-          <Header />
-          <NavBar>
-            {renderRoute}
-          </NavBar>
-        </div>
-      </Router>
-    );
   } else {
     return (
       <Router>
