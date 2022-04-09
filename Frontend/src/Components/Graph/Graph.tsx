@@ -18,12 +18,10 @@ function Graph(props: any) {
   };
   const getData = async (ticker: any) => {
     try {
-      // const response = await fetch(
-      //   `http://52.91.101.112:5000/quote/list?symbol=${ticker}&daynum=10&resolution=1`
-      // );
       const response = await fetch(
-        `http://127.0.0.1:5000/financial-report/summary?symbol=TWTR&length=0.01`
+        `http://52.91.101.112:5000/quote/list?symbol=${ticker}&daynum=10&resolution=1`
       );
+
       let res = await response.json();
       let data = res.data;
       console.log(data);

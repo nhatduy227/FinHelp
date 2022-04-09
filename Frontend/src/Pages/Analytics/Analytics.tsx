@@ -75,13 +75,19 @@ function Analytics() {
     })
   }, [uid])
 
-  const handleSearchChange = (event: React.SyntheticEvent<Element, Event>, searchString: string) => {
+  const handleSearchChange = async (event: React.SyntheticEvent<Element, Event>, searchString: string) => {
     console.log(event);
 
     setCompanyName(searchString);
     if (event.type === 'click') {
-      console.log("Move to new page");
+      const response = await fetch(
+        `http://127.0.0.1:5000/financial-report/summary?symbol=${companyName}&length=0.01`,
+        { mode: 'cors' }
+      );
 
+      let res = await response.json();
+      let data = res.data;
+      console.log(data)
       //To call fetch and assign to company report
       setCompanyReport({
         score: FinancialReport.data.score,
@@ -116,8 +122,8 @@ function Analytics() {
           popupIcon={<SearchIcon />}
           forcePopupIcon={true}
           inputValue={companyName}
-          onInputChange={(event, newInputValue) => {
-            handleSearchChange(event, newInputValue);
+          onInputChange={async (event, newInputValue) => {
+            await handleSearchChange(event, newInputValue);
           }}
         />
       </Search>

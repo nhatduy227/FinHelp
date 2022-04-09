@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from .summarize import summarize_financial_report_by_symbol as summarize_financial_report
 from src.data_source.financial_modeling import FinancialModeling
+from flask_cors import cross_origin
 
 
 summarize_financial_report_service = Blueprint(
@@ -10,6 +11,7 @@ financial_modeling = FinancialModeling()
 
 
 @summarize_financial_report_service.route("/summary")
+@cross_origin()
 def list_stock_news():
     parameters = request.args
 
