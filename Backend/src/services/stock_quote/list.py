@@ -6,7 +6,7 @@ def convert_time(timestamp):
     return datetime.datetime.fromtimestamp(timestamp).strftime('%b-%d-%Y')
 
 
-def list_filter_stock_prices_by_company(finhub,parameters):
+def list_filter_stock_prices_by_company(finhub, parameters):
     if "symbol" not in parameters:
         return {
             "message": "missing parameter: \"symbol\"",
