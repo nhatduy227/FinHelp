@@ -179,7 +179,7 @@ function NewsCard(props: News) {
 
 function NewsSection() {
   const classes = useStyles();
-  const [selectedSymbol, setSelectedSymbol] = useState('AAPL');
+  const [selectedSymbol, setSelectedSymbol] = useState('All');
   const [news, setNews] = useState<Array<News>>([]);
   const [isLoading, setLoading] = useState(true);
 
