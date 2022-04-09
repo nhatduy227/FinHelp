@@ -105,6 +105,6 @@ def NLPScoring(sentences):
             if labels[torch.argmax(outputs).item()] == 'positive':
                 res += 1
             if labels[torch.argmax(outputs).item()] == 'negative':
-                res -= 1
+                res -= 0.2
                 # print(sent, '\nFinBERT predicted sentiment: ', labels[torch.argmax(outputs).item()], '\n')
     return res

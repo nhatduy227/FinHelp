@@ -96,7 +96,6 @@ function LiveMarket() {
       };
       await updateFirestoreUser(uid, updateData);
       alert(`$${amount} of ${ticker} stockes has been bought`);
-      // window.location.reload();
       moveToPortfolio()
     }
   }
