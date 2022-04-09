@@ -1,0 +1,16 @@
+export const Companies = [
+    { label: 'AAPL' },
+    { label: 'TSLA' },
+    { label: 'AMZN' },
+    { label: 'FB' },
+    { label: 'NDAQ' },
+    { label: 'GRAB' },
+    { label: 'TWTR' },
+    { label: 'SNAP' },
+    { label: 'LEVI' },
+    { label: 'SBUX' },
+    { label: 'DIS' },
+    { label: 'NFLX' },
+    { label: 'MSFT' },
+    { label: 'BAC' },
+]
