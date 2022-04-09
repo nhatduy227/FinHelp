@@ -65,40 +65,49 @@ function LiveMarket() {
     if (deposit < amount) {
       alert(`fund is insufficient`);
     } else {
-      const existedStock = stock.filter((s) => s.ticker === ticker)
-      const updateStock = {
-        ticker: ticker,
-        amount: amount,
-      };
+      const existedStock = stock.filter((s) => s.ticker === ticker);
+      let updateStock;
+      if (existedStock) {
+        updateStock = {
+          ...existedStock[0],
+          amount: existedStock[0]?.amount + amount,
+        };
+      } else {
+        updateStock = {
+          ticker: ticker,
+          amount: amount,
+        };
+      }
       const updateData = {
         ...userData,
         deposit: deposit - amount,
-        stock: stock?.ticker
-          ? stock.concat([{ ...updateStock, amount: stock?.amount + amount }])
-          : stock.concat([updateStock]),
+        stock: [updateStock],
       };
       await updateFirestoreUser(uid, updateData);
       alert(`$${amount} of ${ticker} stockes has been bought`);
+      window.location.reload();
     }
   }
   async function handleSell(ticker: any, amount: any) {
     const deposit = userData?.deposit;
     const stock = userData?.stock;
     const uid = userData?.uid;
-    if (stock?.ticker != ticker && stock?.amount < amount) {
+    const existedStock = stock.filter((s) => s.ticker === ticker);
+    if (existedStock[0]?.ticker != ticker && existedStock[0]?.amount < amount) {
       alert(`No stock available to sell`);
     } else {
       const updateStock = {
-        ticker: stock?.ticker,
-        amount: stock?.amount,
+        ...existedStock[0],
+        amount: existedStock[0]?.amount - amount,
       };
       const updateData = {
         ...userData,
         deposit: deposit + amount,
-        stock: stock.concat([{ ...updateStock, amount: stock?.amount - amount }]),
+        stock: [updateStock],
       };
       await updateFirestoreUser(uid, updateData);
       alert(`$${amount} of ${ticker} stockes has been sold`);
+      window.location.reload();
     }
   }
 
