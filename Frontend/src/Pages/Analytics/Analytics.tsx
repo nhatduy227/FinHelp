@@ -11,7 +11,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 import { Companies } from "../../Components/Header/HeaderData";
 import { FinancialReport } from "./AnalyticsData";
-import {Financial} from "../../Models/FinancialReport";
+import { Financial } from "../../Models/FinancialReport";
+import { Typography } from "@mui/material";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -43,7 +44,7 @@ function Analytics() {
   const [companies, setCompanies] = useState<Array<{ name: string, logo: string }>>([])
 
   const [companyName, setCompanyName] = useState('');
-  const [ companyReport, setCompanyReport ] = useState<Financial>();
+  const [companyReport, setCompanyReport] = useState<Financial>();
 
   const handleSearchChange = (event: React.SyntheticEvent<Element, Event>, searchString: string) => {
     console.log(event);
@@ -88,13 +89,46 @@ function Analytics() {
       </Search>
       {/* </Box> */}
 
-      <div className="report-box">
-        <div className="report-content">
-            {"Index Score: " + companyReport?.score}
-            {"Report summary: " +companyReport?.summary}
-        </div>
-      </div>
-
+      <Box className="report-box" sx={{
+        p: 5,
+        m: 5
+      }}>
+        {
+          companyReport !== undefined
+            ? (
+              <div className="report-content">
+                <Box>
+                  <Typography display="inline" variant="h5" sx={{ fontWeight: 'bold'}}>
+                    {"Index Score: "}
+                  </Typography>
+                  <Typography display="inline" variant="h5">
+                    {companyReport?.score}
+                  </Typography>
+                </Box>
+                <Box sx={{ mt: 2 }}>
+                    <Typography display="inline" variant="h5" sx={{ fontWeight: 'bold'}}>
+                      {"Report summary: "}
+                    </Typography>
+                    <Typography display="inline" variant="h5">
+                      {companyReport?.summary}
+                    </Typography>
+                </Box>
+                <Box sx={{ mt: 2 }}>
+                  <Typography display="inline" variant="h5" sx={{ fontWeight: 'bold'}}>
+                    {"Investing Strategy: "}
+                  </Typography>
+                  <Typography display="inline" variant="h5">
+                    {"Based on your portfolio, investing strategy and industry, we suggest you to invest $300 of AAPL"}
+                  </Typography>
+                </Box>
+              </div>
+            )
+            : (
+              <div>
+              </div>
+            )
+        }
+      </Box>
     </div>
   );
 }

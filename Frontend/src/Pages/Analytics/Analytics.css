@@ -19,6 +19,7 @@
     display: flex;
     align-items: center;
     color:red; */
+    text-align: start;
 }
 .related-report .title{ 
     text-align: left;
