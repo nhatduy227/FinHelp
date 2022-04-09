@@ -223,7 +223,7 @@ const Header = () => {
               options={Companies}
               getOptionLabel={(option) => option.label}
               sx={{ mf: 5 }}
-              renderInput={(params) => <TextField {...params} />}
+              renderInput={(params) => <TextField placeholder={"Search for stocks..."} {...params} />}
               popupIcon={<SearchIcon />}
               forcePopupIcon={true}
               inputValue={search}

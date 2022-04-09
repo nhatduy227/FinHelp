@@ -1,24 +1,40 @@
-import React from "react";
-import './Analytics.css'
-import Card from '@mui/material/Card';
+import './Analytics.css';
+
 import SearchIcon from '@mui/icons-material/Search';
-import { SafeAnchor } from "react-bootstrap";
-import TextField from '@mui/material/TextField';
+import { Typography } from '@mui/material';
+import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
-import { useState, useEffect } from "react";
-import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import { makeStyles } from '@mui/styles';
+import { DocumentData } from 'firebase/firestore';
+import React from 'react';
+import { useEffect, useState } from 'react';
 
-import { Companies } from "../../Components/Header/HeaderData";
-import { FinancialReport } from "./AnalyticsData";
-import {Financial} from "../../Models/FinancialReport";
+import { Companies } from '../../Components/Header/HeaderData';
+import { auth, getFirestoreUser } from '../../firebase-config';
+import { Financial } from '../../Models/FinancialReport';
+import { User } from '../../Models/User';
+import theme from '../../theme/theme';
+import { FinancialReport } from './AnalyticsData';
+import * as data from './test.json';
+
+const useStyles = makeStyles({
+  highlighter: {
+    color: theme.palette.primary.main
+  },
+  negativeHighlighter: {
+    color: theme.palette.error.main
+  }
+})
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: "rgb(7,45,75, 0.05)",
   marginRight: theme.spacing(2),
-  marginLeft: 0,
+  // marginLeft: 0,
+  alignSelf: 'center',
   // width: '100%',
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(3),
@@ -43,7 +59,21 @@ function Analytics() {
   const [companies, setCompanies] = useState<Array<{ name: string, logo: string }>>([])
 
   const [companyName, setCompanyName] = useState('');
-  const [ companyReport, setCompanyReport ] = useState<Financial>();
+  const [companyReport, setCompanyReport] = useState<Financial>();
+
+  const uid = auth.currentUser?.uid
+  const [userData, setUserData] = useState<User | DocumentData>();
+  const [investmentAmount, setInvestmentAmount] = useState(0);
+
+  const classes = useStyles();
+
+  useEffect(() => {
+    getFirestoreUser(uid).then(function (data) {
+      setUserData(data);
+
+      return data
+    })
+  }, [uid])
 
   const handleSearchChange = (event: React.SyntheticEvent<Element, Event>, searchString: string) => {
     console.log(event);
@@ -53,7 +83,12 @@ function Analytics() {
       console.log("Move to new page");
 
       //To call fetch and assign to company report
-      setCompanyReport(FinancialReport);
+      setCompanyReport({
+        score: FinancialReport.data.score,
+        summary: FinancialReport.data.summary
+      });
+
+      setInvestmentAmount(((FinancialReport.data.score) / 10) * userData?.deposit)
     }
   }
 
@@ -77,7 +112,7 @@ function Analytics() {
           options={Companies}
           getOptionLabel={(option) => option.label}
           sx={{ mf: 5 }}
-          renderInput={(params) => <TextField {...params} />}
+          renderInput={(params) => <TextField placeholder={"Search for stocks..."} {...params} />}
           popupIcon={<SearchIcon />}
           forcePopupIcon={true}
           inputValue={companyName}
@@ -88,13 +123,86 @@ function Analytics() {
       </Search>
       {/* </Box> */}
 
-      <div className="report-box">
-        <div className="report-content">
-            {"Index Score: " + companyReport?.score}
-            {"Report summary: " +companyReport?.summary}
-        </div>
-      </div>
+      <Box className="report-box" sx={{
+        p: 5,
+        m: 5
+      }}>
+        {
+          companyReport !== undefined
+            ? (
+              <div className="report-content">
+                <Box>
+                  <Typography display="inline" variant="h5" sx={{ fontWeight: 'bold' }}>
+                    {"Index Score: "}
+                  </Typography>
+                  <Typography display="inline" variant="h5">
+                    {companyReport?.score}
+                  </Typography>
+                </Box>
 
+                <Box sx={{ mt: 2 }}>
+                  <Typography display="inline" variant="h5" sx={{ fontWeight: 'bold' }}>
+                    {"Investing Strategy: "}
+                  </Typography>
+
+                  <Typography display="inline" variant="h5">
+                    Based on your portfolio, investing strategy and industry, we suggest you to
+                  </Typography>
+
+                  {
+                    FinancialReport.data.score > 0
+                      ? (
+                        <Typography display="inline" variant="h5" className={classes.highlighter}>
+                          {" invest $ " + investmentAmount.toFixed(2)}
+                        </Typography>
+                      )
+                      : (
+                        <Typography display="inline" variant="h5" className={classes.negativeHighlighter}>
+                          {" not invest in " + companyName}
+                        </Typography>
+                      )
+                  }
+
+                  <Typography display="inline" variant="h5">
+                    {
+                      FinancialReport.data.score > 0
+                        ? ` into `
+                        : " at the moment"
+                    }
+                  </Typography>
+
+                  {
+                    FinancialReport.data.score > 0
+                      ? (
+                        <Typography display="inline" variant="h5" className={classes.highlighter}>
+                          {companyName}
+                        </Typography>
+                      )
+                      : (
+                        <Typography display="inline" variant="h5" className={classes.negativeHighlighter}>
+
+                        </Typography>
+                      )
+                  }
+
+                </Box>
+
+                <Box sx={{ mt: 2 }}>
+                  <Typography display="inline" variant="h5" sx={{ fontWeight: 'bold' }}>
+                    {"Report summary: "}
+                  </Typography>
+                  <Typography display="inline" variant="h5">
+                    {companyReport?.summary}
+                  </Typography>
+                </Box>
+              </div>
+            )
+            : (
+              <div>
+              </div>
+            )
+        }
+      </Box>
     </div>
   );
 }
