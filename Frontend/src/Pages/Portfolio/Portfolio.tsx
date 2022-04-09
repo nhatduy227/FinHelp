@@ -17,7 +17,7 @@ import { OrderHistory } from '../../Models/OrderHistory';
 import { User } from '../../Models/User';
 import theme from '../../theme/theme';
 import { numberWithCommas } from '../../Util/formatNumber';
-import { HistoryData, PortfolioData } from './PortfolioData';
+import { TickerColor } from './PortfolioData';
 
 const useStyles = makeStyles({
   upward: {
@@ -72,13 +72,18 @@ function splitArr(stockData: Array<Asset>) {
     }
   }
 
+  if (temp.length !== 0) {
+    result.push(temp)
+  }
+
   return result
 }
 
 function AssetOwn(props: Asset) {
   const classes = useStyles();
 
-  let { color, sticker, logo, amount } = props
+  let { ticker, amount } = props
+  const { color, logo } = TickerColor[ticker]
 
   return (
     <Card
@@ -101,7 +106,7 @@ function AssetOwn(props: Asset) {
         {logo}
         <div className={classes.sticker}>
           <Typography variant="subtitle1">
-            {sticker}
+            {ticker}
           </Typography>
         </div>
         <div>
@@ -114,12 +119,14 @@ function AssetOwn(props: Asset) {
   )
 }
 
-function StockCards() {
+function StockCards(props: any) {
   const classes = useStyles()
-  const result: Array<Array<Asset>> = splitArr(PortfolioData);
+  const { stocksInfo } = props
+
+  const result: Array<Array<Asset>> = splitArr(stocksInfo);
 
   return (
-    <Box className={classes.headerSection}>
+    <Box className={classes.headerSection} sx={{ width: '100%' }}>
       <Typography variant="h6" sx={{ opacity: 0.72 }}>
         My Portfolio
       </Typography>
@@ -132,9 +139,7 @@ function StockCards() {
                 return (
                   <Grid item xs={12} md={6} lg={3}>
                     <AssetOwn
-                      logo={subItems.logo}
-                      color={subItems.color}
-                      sticker={subItems.sticker}
+                      ticker={subItems.ticker}
                       amount={subItems.amount}
                     />
                   </Grid>
@@ -148,13 +153,19 @@ function StockCards() {
   )
 }
 
-function TotalAsset() {
-  const asset = 2289.28;
+function TotalAsset(props: any) {
+  const { stocksInfo } = props
+
+  let asset = 0;
   const previousAsset = 1000;
 
-  const percentageChange = parseFloat((((asset - previousAsset) / (asset)) * 100).toFixed(2))
-
   const classes = useStyles()
+
+  for (let i = 0; i < stocksInfo.length; i++) {
+    asset += parseInt(stocksInfo[i].amount)
+  }
+
+  const percentageChange = parseFloat((((asset - previousAsset) / (asset)) * 100).toFixed(2))
 
   return (
     <Card
@@ -191,8 +202,15 @@ function TotalAsset() {
   )
 }
 
-function History() {
-  const history: Array<OrderHistory> = HistoryData
+function History(props: any) {
+  const { stocksInfo } = props
+  const history: Array<OrderHistory> = stocksInfo
+
+  const today= new Date();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  const yyyy = today.getFullYear();
+  const todayString = mm + '/' + dd + '/' + yyyy;
 
   return (
     <List
@@ -228,7 +246,7 @@ function History() {
                         {"USD " + numberWithCommas(item.amount)}
                       </Typography>
                       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-                        {item.type + " " + item.sticker + " Stock"}
+                        {"Buy " + item.ticker + " Stock"}
                       </Typography>
                     </Box>
                   </Grid>
@@ -243,7 +261,7 @@ function History() {
                     }}
                   >
                     <Typography variant='subtitle2' sx={{ opacity: 0.72 }}>
-                      {item.date}
+                      {todayString}
                     </Typography>
                   </Grid>
                 </Grid>
@@ -260,10 +278,12 @@ function Portfolio() {
   const uid = auth.currentUser?.uid
   const classes = useStyles();
   const [userData, setUserData] = useState<User | DocumentData>();
+  const [userStock, setUserStock] = useState<Array<Asset>>([]);
 
   useEffect(() => {
     getFirestoreUser(uid).then(function (data) {
       setUserData(data);
+      setUserStock(data?.stock)
 
       return data
     })
@@ -298,9 +318,9 @@ function Portfolio() {
         <Button variant="contained" color="primary" className={classes.profile} style={{ color: 'white' }}>
           Get Profile
         </Button>
-        <TotalAsset />
-        <StockCards />
-        <History />
+        <TotalAsset stocksInfo={userStock} />
+        <StockCards stocksInfo={userStock} />
+        <History stocksInfo={userStock} />
       </Box>
     </div>
   );

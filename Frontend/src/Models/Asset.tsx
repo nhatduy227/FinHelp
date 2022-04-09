@@ -1,6 +1,6 @@
 export interface Asset {
-    color: string;
-    sticker: string;
+    // color: string;
+    ticker: string;
     amount: number;
-    logo: object
+    // logo: object
   }
