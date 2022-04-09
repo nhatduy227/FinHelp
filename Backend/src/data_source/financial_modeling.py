@@ -1,22 +1,13 @@
 import requests
 from config.config import Config
-from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-import pandas
+from src import utils
 
 
 class FinancialModeling:
     def __init__(self):
         self.client = Config.financial_modeling
-        options = Options()
-        options.headless = True
-        self.driver = webdriver.Chrome(
-            executable_path="./config/chromedriver",
-            options=options
-        )
 
-    def get_financial_report(self, symbol):
+    def get_financial_report(self, symbol, length=0.3):
         url = f"{Config.financial_modeling}/income-statement/{symbol}"
         params = {
             "symbol": symbol,
@@ -32,9 +23,6 @@ class FinancialModeling:
         if len(response) == 0:
             return None
 
-        load_html = requests.get("https://www.microsoft.com/investor/reports/ar21/index.html").text
+        final_link = response[0]["finalLink"]
 
-        soup = BeautifulSoup(load_html).text
-        print(soup)
-
-        return response
+        return utils.summarize_article(final_link, length)
