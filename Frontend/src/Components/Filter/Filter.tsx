@@ -2,12 +2,12 @@ import React, { FC } from "react";
 import "./Filter.css"
 
 const Filter=()=>{
-    function onClick(){
-        alert('a')
-    }
+    // function onClick(){
+    //     alert('a')
+    // }
     return(
         <div>
-
+{/* 
             <div className="title">
                 <div>
                     Top picks for you
@@ -22,7 +22,7 @@ const Filter=()=>{
                 <div className='filter-item'>Tesla</div>
                 <div className='filter-item'>Meta</div>
 
-            </div>
+            </div> */}
         </div>
     )
 }

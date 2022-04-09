@@ -104,7 +104,7 @@ function Investors() {
                 }
             </Grid>
         </Box>
-    );
+    )
 }
 
 export default Investors;
