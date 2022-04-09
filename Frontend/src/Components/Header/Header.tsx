@@ -212,7 +212,7 @@ const Header = () => {
               color="primary"
               fontWeight="bold"
             >
-              Stock News
+              FinHelp
             </Typography>
           </Box>
           <Box sx={{ flexGrow: 0.2 }} />

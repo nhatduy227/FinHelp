@@ -155,6 +155,7 @@ function StockCards(props: any) {
 
 function TotalAsset(props: any) {
   const { stocksInfo } = props
+  const { deposit } = props
 
   let asset = 0;
   const previousAsset = 1000;
@@ -315,9 +316,9 @@ function Portfolio() {
             {userData?.investingStrategy}
           </Typography>
         </Box>
-        <Button variant="contained" color="primary" className={classes.profile} style={{ color: 'white' }}>
+        {/* <Button variant="contained" color="primary" className={classes.profile} style={{ color: 'white' }}>
           Get Profile
-        </Button>
+        </Button> */}
         <TotalAsset stocksInfo={userStock} />
         <StockCards stocksInfo={userStock} />
         <History stocksInfo={userStock} />

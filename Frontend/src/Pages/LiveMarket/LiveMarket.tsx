@@ -10,15 +10,14 @@ import Graph from "../../Components/Graph/Graph";
 import Button from "@mui/material/Button";
 import { User } from "../../Models/User";
 import { DocumentData } from "firebase/firestore";
-import Filter from "../../Components/Filter/Filter";
+import { useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
-import Investors from "../../Components/Investors/Investors";
 import "./LiveMarket.css";
 
 function LiveMarket() {
-  // const dummyTicker = "AMZN";
   const { state } = useLocation();
+  const navigate = useNavigate();
   const ticker = state as string;
 
   console.log(state)
@@ -47,7 +46,6 @@ function LiveMarket() {
   const [action, setAction] = useState();
   const [errorStatus, setError] = useState(false);
   const [depositAmount, setDepositAmount] = useState(0);
-
   const handleClose = () => setShow(false);
   const handleEnterAmount = (amount: string) => {
     if (amount !== "") {
@@ -61,6 +59,9 @@ function LiveMarket() {
       }
     }
   };
+  function moveToPortfolio() {
+    navigate('/');
+  }
   function handleShow(action: any) {
     setAction(action);
     setShow(true);
@@ -95,7 +96,8 @@ function LiveMarket() {
       };
       await updateFirestoreUser(uid, updateData);
       alert(`$${amount} of ${ticker} stockes has been bought`);
-      window.location.reload();
+      // window.location.reload();
+      moveToPortfolio()
     }
   }
   async function handleSell(ticker: any, amount: any) {
@@ -118,7 +120,7 @@ function LiveMarket() {
       };
       await updateFirestoreUser(uid, updateData);
       alert(`$${amount} of ${ticker} stockes has been sold`);
-      window.location.reload();
+      moveToPortfolio();
     }
   }
 
@@ -126,7 +128,6 @@ function LiveMarket() {
     <>
       <div className="container" style={{ width: '100%' }}>
         <strong>{dummyTicker}</strong>
-        <Filter />
         <Graph ticker={dummyTicker} />
         <div className="btn-container">
           <div className="btn">
@@ -150,7 +151,6 @@ function LiveMarket() {
             </Button>
           </div>
         </div>
-        <Investors />
       </div>
       <Modal
         isOpen={show}

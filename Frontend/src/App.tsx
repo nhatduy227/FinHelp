@@ -35,7 +35,7 @@ function App() {
   const renderRoute = (
     <div>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<Portfolio />} />
       </Routes>
       <Routes>
         <Route path="/Analytics" element={<Analytics />} />
@@ -44,7 +44,7 @@ function App() {
         <Route path="/LiveMarket" element={<LiveMarket />} />
       </Routes>
       <Routes>
-        <Route path="/Portfolio" element={<Portfolio />} />
+        <Route path="/DashBoard" element={<Dashboard />} />
       </Routes>
       <Routes>
         <Route path="/Profile" element={<Profile />} />

@@ -6,8 +6,14 @@ import BusinessCenterOutlinedIcon from '@mui/icons-material/BusinessCenterOutlin
 
 export const NavBarData = [
   {
-    title: 'Dashboard',
+    title: 'Portfolio',
     path: '/',
+    icon: <BusinessCenterOutlinedIcon />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Dashboard',
+    path: '/Dashboard',
     icon: <HomeOutlinedIcon />,
     cName: 'nav-text'
   },
@@ -23,10 +29,5 @@ export const NavBarData = [
     icon: <ShowChartOutlinedIcon />,
     cName: 'nav-text'
   },
-  {
-    title: 'Portfolio',
-    path: '/Portfolio',
-    icon: <BusinessCenterOutlinedIcon />,
-    cName: 'nav-text'
-  }
+  
 ];
