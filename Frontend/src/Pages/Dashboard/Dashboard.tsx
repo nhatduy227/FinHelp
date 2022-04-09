@@ -116,7 +116,7 @@ const useStyles = makeStyles({
   },
 });
 
-function NewsCard(props: News) {
+export const NewsCard=(props: News)=> {
   const classes = useStyles();
 
   const gutterStyles = usePushingGutterStyles({ space: 1.5 });
@@ -176,6 +176,8 @@ function NewsCard(props: News) {
     </Card>
   );
 };
+
+
 
 function NewsSection() {
   const classes = useStyles();
