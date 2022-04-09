@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
-import { auth, updateFirestoreUser } from "../../firebase-config";
+import { auth, setFirestoreUser } from "../../firebase-config";
 
 import {
   signInWithPopup,
@@ -35,7 +35,7 @@ function Login() {
             deposit: 0,
             stock: []
           };
-          await updateFirestoreUser(user.uid, userData);
+          await setFirestoreUser(user.uid, userData);
         } else {
           console.log("User already exists");
         }
